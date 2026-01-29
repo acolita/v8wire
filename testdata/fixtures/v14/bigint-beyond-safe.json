@@ -1,0 +1,12 @@
+{
+  "description": "bigint beyond safe integer (2^53+1)",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.492Z",
+  "byteLength": 12,
+  "hexDump": "ff0f5a100100000000002000",
+  "value": {
+    "__type": "bigint",
+    "value": "9007199254740993"
+  }
+}

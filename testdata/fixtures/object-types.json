@@ -1,0 +1,14 @@
+{
+  "description": "object with various types",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.557Z",
+  "byteLength": 37,
+  "hexDump": "ff0f6f22036e756d49542203737472220568656c6c6f2204626f6f6c5422036e696c307b04",
+  "value": {
+    "num": 42,
+    "str": "hello",
+    "bool": true,
+    "nil": null
+  }
+}

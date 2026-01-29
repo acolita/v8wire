@@ -1,0 +1,9 @@
+{
+  "description": "empty object",
+  "nodeVersion": "v22.22.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T13:47:25.732Z",
+  "byteLength": 5,
+  "hexDump": "ff0f6f7b00",
+  "value": {}
+}

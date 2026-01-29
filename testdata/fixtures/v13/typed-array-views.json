@@ -1,0 +1,40 @@
+{
+  "description": "two TypedArray views into same buffer",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.373Z",
+  "byteLength": 41,
+  "hexDump": "ff0f6f220576696577315c01080102030405060708220576696577325c0108090a0b0c0d0e0f107b02",
+  "value": {
+    "view1": {
+      "__type": "Uint8Array",
+      "data": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "byteOffset": 0,
+      "byteLength": 8
+    },
+    "view2": {
+      "__type": "Uint8Array",
+      "data": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "byteOffset": 8,
+      "byteLength": 8
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "description": "array with mixed types",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.502Z",
+  "byteLength": 16,
+  "hexDump": "ff0f41044902220374776f5430240004",
+  "value": [
+    1,
+    "two",
+    true,
+    null
+  ]
+}

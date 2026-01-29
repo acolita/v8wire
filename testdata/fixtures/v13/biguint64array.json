@@ -1,0 +1,27 @@
+{
+  "description": "BigUint64Array",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.372Z",
+  "byteLength": 29,
+  "hexDump": "ff0f5c0c1800000000000000000100000000000000ffffffffffffffff",
+  "value": {
+    "__type": "BigUint64Array",
+    "data": [
+      {
+        "__type": "bigint",
+        "value": "0"
+      },
+      {
+        "__type": "bigint",
+        "value": "1"
+      },
+      {
+        "__type": "bigint",
+        "value": "18446744073709551615"
+      }
+    ],
+    "byteOffset": 0,
+    "byteLength": 24
+  }
+}

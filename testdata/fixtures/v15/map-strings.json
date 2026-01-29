@@ -1,0 +1,21 @@
+{
+  "description": "Map with string keys",
+  "nodeVersion": "v22.22.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T13:47:25.741Z",
+  "byteLength": 33,
+  "hexDump": "ff0f3b22046b657931220676616c75653122046b657932220676616c7565323a04",
+  "value": {
+    "__type": "Map",
+    "entries": [
+      [
+        "key1",
+        "value1"
+      ],
+      [
+        "key2",
+        "value2"
+      ]
+    ]
+  }
+}

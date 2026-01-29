@@ -1,0 +1,17 @@
+{
+  "description": "array containing itself",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.576Z",
+  "byteLength": 15,
+  "hexDump": "ff0f41044902490449065e00240004",
+  "value": [
+    1,
+    2,
+    3,
+    {
+      "__type": "CircularRef",
+      "ref": "[Circular]"
+    }
+  ]
+}

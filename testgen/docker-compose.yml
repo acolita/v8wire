@@ -1,0 +1,33 @@
+# Docker Compose for multi-version V8 fixture generation
+# Generates fixtures for V8 format versions 13, 14, and 15
+
+services:
+  node18:
+    build:
+      context: .
+      dockerfile: Dockerfile.node18
+    volumes:
+      - ../testdata/fixtures/v13:/output
+    environment:
+      - NODE_MAJOR_VERSION=18
+      - V8_FORMAT_VERSION=13
+
+  node20:
+    build:
+      context: .
+      dockerfile: Dockerfile.node20
+    volumes:
+      - ../testdata/fixtures/v14:/output
+    environment:
+      - NODE_MAJOR_VERSION=20
+      - V8_FORMAT_VERSION=14
+
+  node22:
+    build:
+      context: .
+      dockerfile: Dockerfile.node22
+    volumes:
+      - ../testdata/fixtures/v15:/output
+    environment:
+      - NODE_MAJOR_VERSION=22
+      - V8_FORMAT_VERSION=15

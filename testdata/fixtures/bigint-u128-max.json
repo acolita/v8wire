@@ -1,0 +1,12 @@
+{
+  "description": "BigInt u128 max value",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.954Z",
+  "byteLength": 20,
+  "hexDump": "ff0f5a20ffffffffffffffffffffffffffffffff",
+  "value": {
+    "__type": "bigint",
+    "value": "340282366920938463463374607431768211455"
+  }
+}

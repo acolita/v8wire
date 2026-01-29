@@ -1,0 +1,12 @@
+{
+  "description": "empty ArrayBuffer",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.511Z",
+  "byteLength": 4,
+  "hexDump": "ff0f4200",
+  "value": {
+    "__type": "ArrayBuffer",
+    "data": []
+  }
+}

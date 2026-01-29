@@ -1,0 +1,20 @@
+{
+  "description": "Set with mixed primitive types",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:15.130Z",
+  "byteLength": 15,
+  "hexDump": "ff0f274902220374776f54305f2c05",
+  "value": {
+    "__type": "Set",
+    "values": [
+      1,
+      "two",
+      true,
+      null,
+      {
+        "__type": "undefined"
+      }
+    ]
+  }
+}

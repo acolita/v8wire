@@ -1,0 +1,13 @@
+{
+  "description": "object with duplicate string references",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.569Z",
+  "byteLength": 122,
+  "hexDump": "ff0f6f22016122225468697320737472696e672061707065617273206d756c7469706c652074696d657322016222225468697320737472696e672061707065617273206d756c7469706c652074696d657322016322225468697320737472696e672061707065617273206d756c7469706c652074696d65737b03",
+  "value": {
+    "a": "This string appears multiple times",
+    "b": "This string appears multiple times",
+    "c": "This string appears multiple times"
+  }
+}

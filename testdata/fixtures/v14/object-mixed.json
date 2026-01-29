@@ -1,0 +1,12 @@
+{
+  "description": "object with string and number",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.498Z",
+  "byteLength": 24,
+  "hexDump": "ff0f6f22046e616d6522044a6f686e2203616765493c7b02",
+  "value": {
+    "name": "John",
+    "age": 30
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "description": "simple ASCII string",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.167Z",
+  "byteLength": 17,
+  "hexDump": "ff0f220d48656c6c6f2c20576f726c6421",
+  "value": "Hello, World!"
+}

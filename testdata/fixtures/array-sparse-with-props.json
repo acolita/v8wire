@@ -1,0 +1,17 @@
+{
+  "description": "sparse array with custom properties",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.955Z",
+  "byteLength": 36,
+  "hexDump": "ff0f6103490022056669727374220a637573746f6d50726f702206637573746f6d400203",
+  "value": [
+    "first",
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    }
+  ]
+}

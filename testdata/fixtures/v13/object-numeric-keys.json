@@ -1,0 +1,13 @@
+{
+  "description": "object with numeric keys",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.197Z",
+  "byteLength": 27,
+  "hexDump": "ff0f6f490022047a65726f490222036f6e654904220374776f7b03",
+  "value": {
+    "0": "zero",
+    "1": "one",
+    "2": "two"
+  }
+}

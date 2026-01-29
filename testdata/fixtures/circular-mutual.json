@@ -1,0 +1,18 @@
+{
+  "description": "mutually referencing objects",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.576Z",
+  "byteLength": 42,
+  "hexDump": "ff0f6f22046e616d6522014122056f746865726f22046e616d6522014222056f746865725e007b027b02",
+  "value": {
+    "name": "A",
+    "other": {
+      "name": "B",
+      "other": {
+        "__type": "CircularRef",
+        "ref": "[Circular]"
+      }
+    }
+  }
+}

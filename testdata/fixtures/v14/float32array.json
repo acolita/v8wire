@@ -1,0 +1,17 @@
+{
+  "description": "Float32Array",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.515Z",
+  "byteLength": 13,
+  "hexDump": "ff0f5c07080000c03f000020c0",
+  "value": {
+    "__type": "Float32Array",
+    "data": [
+      1.5,
+      -2.5
+    ],
+    "byteOffset": 0,
+    "byteLength": 8
+  }
+}

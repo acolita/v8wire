@@ -1,0 +1,12 @@
+{
+  "name": "v8wire-testgen",
+  "version": "1.0.0",
+  "description": "V8 serialization test fixture generator for v8wire",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

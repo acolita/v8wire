@@ -1,0 +1,9 @@
+{
+  "description": "unpaired low surrogate",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.374Z",
+  "byteLength": 6,
+  "hexDump": "ff0f630200dc",
+  "value": "\udc00"
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Int32Array",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.515Z",
+  "byteLength": 13,
+  "hexDump": "ff0f5c050800000080ffffff7f",
+  "value": {
+    "__type": "Int32Array",
+    "data": [
+      -2147483648,
+      2147483647
+    ],
+    "byteOffset": 0,
+    "byteLength": 8
+  }
+}

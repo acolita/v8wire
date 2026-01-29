@@ -1,0 +1,16 @@
+# Node.js 22.x - V8 format version 15
+FROM node:22-alpine
+
+WORKDIR /app
+
+COPY generate.js .
+COPY package.json .
+
+# Create output directory
+RUN mkdir -p /output
+
+# Set version info as environment variables
+ENV NODE_MAJOR_VERSION=22
+ENV V8_FORMAT_VERSION=15
+
+CMD ["node", "generate.js", "--output-dir", "/output"]

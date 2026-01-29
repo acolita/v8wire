@@ -1,0 +1,13 @@
+{
+  "description": "RegExp with anchors",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.517Z",
+  "byteLength": 13,
+  "hexDump": "ff0f5222075e73746172742400",
+  "value": {
+    "__type": "RegExp",
+    "source": "^start$",
+    "flags": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "description": "Set containing objects",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.912Z",
+  "byteLength": 32,
+  "hexDump": "ff0f276f2202696449027b016f2202696449047b016f2202696449067b012c03",
+  "value": {
+    "__type": "Set",
+    "values": [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      },
+      {
+        "id": 3
+      }
+    ]
+  }
+}

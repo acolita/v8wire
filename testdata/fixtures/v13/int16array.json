@@ -1,0 +1,17 @@
+{
+  "description": "Int16Array",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.184Z",
+  "byteLength": 9,
+  "hexDump": "ff0f5c03040080ff7f",
+  "value": {
+    "__type": "Int16Array",
+    "data": [
+      -32768,
+      32767
+    ],
+    "byteOffset": 0,
+    "byteLength": 4
+  }
+}

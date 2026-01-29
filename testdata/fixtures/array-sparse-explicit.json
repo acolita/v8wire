@@ -1,0 +1,23 @@
+{
+  "description": "sparse array created with explicit length",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.955Z",
+  "byteLength": 17,
+  "hexDump": "ff0f6105490422066d6964646c65400105",
+  "value": [
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    },
+    "middle",
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    }
+  ]
+}

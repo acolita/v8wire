@@ -1,0 +1,16 @@
+{
+  "description": "Set of strings",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.574Z",
+  "byteLength": 14,
+  "hexDump": "ff0f272201612201622201632c03",
+  "value": {
+    "__type": "Set",
+    "values": [
+      "a",
+      "b",
+      "c"
+    ]
+  }
+}

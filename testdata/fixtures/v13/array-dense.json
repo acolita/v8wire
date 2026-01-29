@@ -1,0 +1,13 @@
+{
+  "description": "dense array of numbers",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.171Z",
+  "byteLength": 13,
+  "hexDump": "ff0f4103490249044906240003",
+  "value": [
+    1,
+    2,
+    3
+  ]
+}

@@ -1,0 +1,16 @@
+# Node.js 18.x - V8 format version 13
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY generate.js .
+COPY package.json .
+
+# Create output directory
+RUN mkdir -p /output
+
+# Set version info as environment variables
+ENV NODE_MAJOR_VERSION=18
+ENV V8_FORMAT_VERSION=13
+
+CMD ["node", "generate.js", "--output-dir", "/output"]

@@ -1,0 +1,9 @@
+{
+  "description": "int32 min (-2^31)",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.486Z",
+  "byteLength": 8,
+  "hexDump": "ff0f49ffffffff0f",
+  "value": -2147483648
+}

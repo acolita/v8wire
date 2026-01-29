@@ -1,0 +1,11 @@
+{
+  "description": "double NaN",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.489Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4e000000000000f87f",
+  "value": {
+    "__type": "NaN"
+  }
+}

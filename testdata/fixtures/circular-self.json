@@ -1,0 +1,15 @@
+{
+  "description": "self-referencing object",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.575Z",
+  "byteLength": 25,
+  "hexDump": "ff0f6f22046e616d65220473656c66220473656c665e007b02",
+  "value": {
+    "name": "self",
+    "self": {
+      "__type": "CircularRef",
+      "ref": "[Circular]"
+    }
+  }
+}

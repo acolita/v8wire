@@ -1,0 +1,12 @@
+{
+  "description": "boxed Number",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.186Z",
+  "byteLength": 11,
+  "hexDump": "ff0f6e0000000000004540",
+  "value": {
+    "__type": "NumberObject",
+    "value": 42
+  }
+}

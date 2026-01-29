@@ -1,0 +1,9 @@
+{
+  "description": "date at Unix epoch",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.496Z",
+  "byteLength": 11,
+  "hexDump": "ff0f440000000000000000",
+  "value": "1970-01-01T00:00:00.000Z"
+}

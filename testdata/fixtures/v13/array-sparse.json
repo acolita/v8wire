@@ -1,0 +1,35 @@
+{
+  "description": "sparse array with holes",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.172Z",
+  "byteLength": 23,
+  "hexDump": "ff0f610b4900490249064908490a490c4914491640040b",
+  "value": [
+    1,
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    },
+    4,
+    {
+      "__type": "undefined"
+    },
+    6,
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    },
+    {
+      "__type": "undefined"
+    },
+    11
+  ]
+}

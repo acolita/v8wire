@@ -1,0 +1,9 @@
+{
+  "description": "DataView",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.921Z",
+  "byteLength": 21,
+  "hexDump": "ff0f5c09103930000000000000182d4454fb210940",
+  "value": {}
+}

@@ -1,0 +1,9 @@
+{
+  "description": "date before epoch (Dec 31, 1969)",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.169Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4400000000709994c1",
+  "value": "1969-12-31T00:00:00.000Z"
+}

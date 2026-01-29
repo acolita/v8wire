@@ -1,0 +1,11 @@
+{
+  "description": "double negative zero",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.488Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4e0000000000000080",
+  "value": {
+    "__type": "-0"
+  }
+}

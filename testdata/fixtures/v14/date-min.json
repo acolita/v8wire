@@ -1,0 +1,9 @@
+{
+  "description": "min representable date",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.498Z",
+  "byteLength": 11,
+  "hexDump": "ff0f440000dcc208b23ec3",
+  "value": "-271821-04-20T00:00:00.000Z"
+}

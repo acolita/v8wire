@@ -1,0 +1,18 @@
+{
+  "description": "nested arrays",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.502Z",
+  "byteLength": 25,
+  "hexDump": "ff0f4102410249024904240002410249064908240002240002",
+  "value": [
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ]
+  ]
+}

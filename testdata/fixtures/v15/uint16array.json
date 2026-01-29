@@ -1,0 +1,17 @@
+{
+  "description": "Uint16Array",
+  "nodeVersion": "v22.22.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T13:47:25.755Z",
+  "byteLength": 9,
+  "hexDump": "ff0f5c04040000ffff",
+  "value": {
+    "__type": "Uint16Array",
+    "data": [
+      0,
+      65535
+    ],
+    "byteOffset": 0,
+    "byteLength": 4
+  }
+}

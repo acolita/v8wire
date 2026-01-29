@@ -1,0 +1,9 @@
+{
+  "description": "double max",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.519Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4effffffffffffef7f",
+  "value": 1.7976931348623157e+308
+}

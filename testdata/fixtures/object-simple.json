@@ -1,0 +1,12 @@
+{
+  "description": "simple object with two properties",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.555Z",
+  "byteLength": 15,
+  "hexDump": "ff0f6f220161490222016249047b02",
+  "value": {
+    "a": 1,
+    "b": 2
+  }
+}

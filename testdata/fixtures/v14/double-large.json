@@ -1,0 +1,9 @@
+{
+  "description": "double large integer (2^33)",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.489Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4e0000000000000042",
+  "value": 8589934592
+}

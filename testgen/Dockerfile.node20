@@ -1,0 +1,16 @@
+# Node.js 20.x - V8 format version 14
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY generate.js .
+COPY package.json .
+
+# Create output directory
+RUN mkdir -p /output
+
+# Set version info as environment variables
+ENV NODE_MAJOR_VERSION=20
+ENV V8_FORMAT_VERSION=14
+
+CMD ["node", "generate.js", "--output-dir", "/output"]

@@ -1,0 +1,13 @@
+{
+  "description": "RegExp with flags",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.516Z",
+  "byteLength": 19,
+  "hexDump": "ff0f52220d7061747465726e2e2a7465737403",
+  "value": {
+    "__type": "RegExp",
+    "source": "pattern.*test",
+    "flags": "gi"
+  }
+}

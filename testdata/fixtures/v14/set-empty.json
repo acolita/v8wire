@@ -1,0 +1,12 @@
+{
+  "description": "empty Set",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.506Z",
+  "byteLength": 5,
+  "hexDump": "ff0f272c00",
+  "value": {
+    "__type": "Set",
+    "values": []
+  }
+}

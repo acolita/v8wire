@@ -1,0 +1,18 @@
+{
+  "description": "Int8Array",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.513Z",
+  "byteLength": 8,
+  "hexDump": "ff0f5c000380007f",
+  "value": {
+    "__type": "Int8Array",
+    "data": [
+      -128,
+      0,
+      127
+    ],
+    "byteOffset": 0,
+    "byteLength": 3
+  }
+}

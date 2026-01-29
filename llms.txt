@@ -1,0 +1,250 @@
+# v8wire - Go V8 Structured Clone Serialization Library
+
+## Overview
+
+v8wire is a Go library for serializing and deserializing V8's Structured Clone format,
+compatible with Node.js `v8.serialize()` and `v8.deserialize()`.
+
+Import: `github.com/acolita/v8wire/pkg/v8serialize`
+
+## Quick Start
+
+```go
+import "github.com/acolita/v8wire/pkg/v8serialize"
+
+// Deserialize V8 data
+val, err := v8serialize.Deserialize(data)
+if err != nil {
+    return err
+}
+fmt.Println(val.AsInt32()) // for int32 values
+
+// Serialize Go values
+data, err := v8serialize.SerializeGo(map[string]interface{}{
+    "name": "Alice",
+    "age":  30,
+})
+```
+
+## Core Functions
+
+### Deserialization
+
+```go
+// Deserialize V8 binary data to a Value
+func Deserialize(data []byte) (Value, error)
+
+// Deserialize with options (max depth, max size limits)
+func DeserializeWithOptions(data []byte, opts ...Option) (Value, error)
+
+// Check if data has valid V8 header (quick validation)
+func IsValidV8Data(data []byte) bool
+
+// Convert Value to native Go types (map[string]interface{}, []interface{}, etc.)
+func ToGo(v Value) interface{}
+```
+
+### Serialization
+
+```go
+// Serialize a Value to V8 format
+func Serialize(v Value) ([]byte, error)
+
+// Serialize native Go types to V8 format
+func SerializeGo(v interface{}) ([]byte, error)
+```
+
+### Options
+
+```go
+WithMaxDepth(depth int) Option    // Limit nesting depth (default 1000)
+WithMaxSize(size int) Option      // Limit input size in bytes (default unlimited)
+```
+
+## Value Type
+
+The `Value` type wraps deserialized JavaScript values.
+
+### Type Checking
+
+```go
+val.Type() Type           // Get the type (TypeNull, TypeInt32, TypeString, etc.)
+val.IsNull() bool
+val.IsUndefined() bool
+val.IsBool() bool
+val.IsNumber() bool       // True for int32, uint32, or double
+val.IsString() bool
+val.IsObject() bool
+val.IsArray() bool
+```
+
+### Value Extraction (panic on type mismatch)
+
+```go
+val.AsBool() bool
+val.AsInt32() int32
+val.AsUint32() uint32
+val.AsDouble() float64
+val.AsNumber() float64    // Works for any number type
+val.AsBigInt() *big.Int
+val.AsString() string
+val.AsDate() time.Time
+val.AsObject() map[string]Value
+val.AsArray() []Value
+val.Interface() interface{}  // Raw underlying value
+```
+
+### Value Constructors
+
+```go
+v8serialize.Null()
+v8serialize.Undefined()
+v8serialize.Bool(true)
+v8serialize.Int32(42)
+v8serialize.Uint32(123)
+v8serialize.Double(3.14)
+v8serialize.String("hello")
+v8serialize.BigInt(bigIntValue)
+v8serialize.Date(time.Now())
+v8serialize.Object(map[string]Value{"key": v8serialize.Int32(1)})
+v8serialize.Array([]Value{v8serialize.Int32(1), v8serialize.Int32(2)})
+v8serialize.ArrayBuffer([]byte{1, 2, 3})
+```
+
+## Supported Types
+
+| JavaScript Type | Go Type | Notes |
+|----------------|---------|-------|
+| null | nil | |
+| undefined | nil | Distinguishable via IsUndefined() |
+| boolean | bool | |
+| number (int32) | int32 | Values in int32 range |
+| number (uint32) | uint32 | Values 2^31 to 2^32-1 |
+| number (double) | float64 | All other numbers |
+| bigint | *big.Int | Arbitrary precision |
+| string | string | UTF-8 in Go |
+| Date | time.Time | Millisecond precision |
+| RegExp | *RegExp | Pattern and flags |
+| Object | map[string]Value | |
+| Array | []Value | Supports sparse arrays |
+| Map | *JSMap | Preserves insertion order |
+| Set | *JSSet | Preserves insertion order |
+| ArrayBuffer | []byte | |
+| TypedArray | *ArrayBufferView | Int8Array, Uint8Array, etc. |
+| Error | *JSError | Error, TypeError, etc. |
+| Boxed primitives | *BoxedPrimitive | new Number(), new Boolean() |
+
+## Special Types
+
+### JSMap (preserves insertion order)
+```go
+type JSMap struct {
+    Entries []MapEntry
+}
+type MapEntry struct {
+    Key   Value
+    Value Value
+}
+```
+
+### JSSet (preserves insertion order)
+```go
+type JSSet struct {
+    Values []Value
+}
+```
+
+### ArrayBufferView (TypedArray/DataView)
+```go
+type ArrayBufferView struct {
+    Buffer     []byte
+    ByteOffset int
+    ByteLength int
+    Type       string // "Int8Array", "Uint8Array", etc.
+}
+```
+
+### JSError
+```go
+type JSError struct {
+    Name    string  // "Error", "TypeError", etc.
+    Message string
+    Stack   string
+    Cause   *Value  // ES2022 Error.cause
+}
+```
+
+### RegExp
+```go
+type RegExp struct {
+    Pattern string
+    Flags   string  // "gi", "m", etc.
+}
+```
+
+## Error Handling
+
+```go
+var (
+    ErrInvalidHeader      // Invalid V8 header
+    ErrUnsupportedVersion // Version not 13-15
+    ErrUnexpectedTag      // Unknown tag encountered
+    ErrMalformedData      // Corrupted or truncated data
+    ErrMaxDepthExceeded   // Nesting too deep
+    ErrMaxSizeExceeded    // Input too large
+    ErrInvalidReference   // Bad object reference ID
+)
+```
+
+## Limitations
+
+1. **Serializer circular references**: Not supported. Will stack overflow on cycles.
+   Deserializer fully supports circular references.
+
+2. **ResizableArrayBuffer**: Not yet implemented (V8 v14+ feature).
+
+3. **SharedArrayBuffer**: Not supported (requires shared memory).
+
+4. **WebAssembly.Module**: Not supported.
+
+## Compatibility
+
+- V8 format versions: 13, 14, 15
+- Node.js versions: 18.x, 20.x, 22.x
+- Go versions: 1.22+
+
+## Example: Round-trip
+
+```go
+// Create a complex object
+obj := v8serialize.Object(map[string]v8serialize.Value{
+    "name":    v8serialize.String("Alice"),
+    "age":     v8serialize.Int32(30),
+    "scores":  v8serialize.Array([]v8serialize.Value{
+        v8serialize.Int32(95),
+        v8serialize.Int32(87),
+        v8serialize.Int32(92),
+    }),
+})
+
+// Serialize to V8 format
+data, _ := v8serialize.Serialize(obj)
+
+// Deserialize back
+restored, _ := v8serialize.Deserialize(data)
+
+// Access values
+name := restored.AsObject()["name"].AsString()
+```
+
+## Example: Working with Node.js
+
+```go
+// Data from Node.js: v8.serialize({message: "hello"})
+nodeData := []byte{0xff, 0x0f, 0x6f, 0x22, 0x07, 0x6d, 0x65, 0x73,
+                   0x73, 0x61, 0x67, 0x65, 0x22, 0x05, 0x68, 0x65,
+                   0x6c, 0x6c, 0x6f, 0x7b, 0x01}
+
+val, _ := v8serialize.Deserialize(nodeData)
+msg := val.AsObject()["message"].AsString() // "hello"
+```

@@ -1,0 +1,9 @@
+{
+  "description": "double min positive",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.490Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4e0100000000000000",
+  "value": 5e-324
+}

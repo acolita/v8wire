@@ -1,0 +1,9 @@
+{
+  "description": "int32 negative (-42)",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.153Z",
+  "byteLength": 4,
+  "hexDump": "ff0f4953",
+  "value": -42
+}

@@ -1,0 +1,13 @@
+{
+  "description": "simple RegExp",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.596Z",
+  "byteLength": 11,
+  "hexDump": "ff0f52220568656c6c6f00",
+  "value": {
+    "__type": "RegExp",
+    "source": "hello",
+    "flags": ""
+  }
+}

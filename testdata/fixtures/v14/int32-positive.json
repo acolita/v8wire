@@ -1,0 +1,9 @@
+{
+  "description": "int32 positive (42)",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.484Z",
+  "byteLength": 4,
+  "hexDump": "ff0f4954",
+  "value": 42
+}

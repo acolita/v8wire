@@ -1,0 +1,31 @@
+{
+  "description": "BigInt64Array",
+  "nodeVersion": "v22.22.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T13:47:25.871Z",
+  "byteLength": 37,
+  "hexDump": "ff0f5c0b200000000000000000ffffffffffffffffffffffffffffff7f0000000000000080",
+  "value": {
+    "__type": "BigInt64Array",
+    "data": [
+      {
+        "__type": "bigint",
+        "value": "0"
+      },
+      {
+        "__type": "bigint",
+        "value": "-1"
+      },
+      {
+        "__type": "bigint",
+        "value": "9223372036854775807"
+      },
+      {
+        "__type": "bigint",
+        "value": "-9223372036854775808"
+      }
+    ],
+    "byteOffset": 0,
+    "byteLength": 32
+  }
+}

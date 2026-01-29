@@ -1,0 +1,9 @@
+{
+  "description": "double pi",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.158Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4e112d4454fb210940",
+  "value": 3.14159265358979
+}

@@ -1,0 +1,13 @@
+{
+  "description": "array with custom properties",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.568Z",
+  "byteLength": 54,
+  "hexDump": "ff0f4103490249044906220a637573746f6d50726f70220c637573746f6d2076616c7565220b616e6f7468657250726f704954240203",
+  "value": [
+    1,
+    2,
+    3
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "description": "two-byte string with emoji (Chinese + globe)",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.539Z",
+  "byteLength": 12,
+  "hexDump": "ff0f6308604f7d593cd80ddf",
+  "value": "你好🌍"
+}

@@ -1,0 +1,53 @@
+{
+  "description": "multiple TypedArray types viewing same buffer",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:15.132Z",
+  "byteLength": 91,
+  "hexDump": "ff0f6f22096173466c6f617436345c0810182d4454fb2109406957148b0abf05402207617355696e74385c0110182d4454fb2109406957148b0abf054022076173496e7433325c0510182d4454fb2109406957148b0abf05407b03",
+  "value": {
+    "asFloat64": {
+      "__type": "Float64Array",
+      "data": [
+        3.141592653589793,
+        2.718281828459045
+      ],
+      "byteOffset": 0,
+      "byteLength": 16
+    },
+    "asUint8": {
+      "__type": "Uint8Array",
+      "data": [
+        24,
+        45,
+        68,
+        84,
+        251,
+        33,
+        9,
+        64,
+        105,
+        87,
+        20,
+        139,
+        10,
+        191,
+        5,
+        64
+      ],
+      "byteOffset": 0,
+      "byteLength": 16
+    },
+    "asInt32": {
+      "__type": "Int32Array",
+      "data": [
+        1413754136,
+        1074340347,
+        -1961601175,
+        1074118410
+      ],
+      "byteOffset": 0,
+      "byteLength": 16
+    }
+  }
+}

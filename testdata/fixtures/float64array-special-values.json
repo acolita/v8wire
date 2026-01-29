@@ -1,0 +1,32 @@
+{
+  "description": "Float64Array with NaN, Infinity, -0",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.962Z",
+  "byteLength": 77,
+  "hexDump": "ff0f5c08480000000000000000000000000000f8bf00000000000000400000000000000cc0000000000000f87f00000000000016c0000000000000f0ff0000000000000080000000000000f07f",
+  "value": {
+    "__type": "Float64Array",
+    "data": [
+      0,
+      -1.5,
+      2,
+      -3.5,
+      {
+        "__type": "NaN"
+      },
+      -5.5,
+      {
+        "__type": "-Infinity"
+      },
+      {
+        "__type": "-0"
+      },
+      {
+        "__type": "Infinity"
+      }
+    ],
+    "byteOffset": 0,
+    "byteLength": 72
+  }
+}

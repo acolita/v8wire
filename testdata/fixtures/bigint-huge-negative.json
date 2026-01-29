@@ -1,0 +1,12 @@
+{
+  "description": "bigint huge negative",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.533Z",
+  "byteLength": 20,
+  "hexDump": "ff0f5a21d20a3f4eeee073c3f60fe98e01000000",
+  "value": {
+    "__type": "bigint",
+    "value": "-123456789012345678901234567890"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "description": "deep object with circular reference",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.577Z",
+  "byteLength": 62,
+  "hexDump": "ff0f6f22056c6576656c490222056368696c646f22056c6576656c490422056368696c646f22056c6576656c49062206706172656e745e007b027b027b02",
+  "value": {
+    "level": 1,
+    "child": {
+      "level": 2,
+      "child": {
+        "level": 3,
+        "parent": {
+          "__type": "CircularRef",
+          "ref": "[Circular]"
+        }
+      }
+    }
+  }
+}

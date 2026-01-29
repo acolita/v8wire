@@ -1,0 +1,11 @@
+{
+  "description": "double positive infinity",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.488Z",
+  "byteLength": 11,
+  "hexDump": "ff0f4e000000000000f07f",
+  "value": {
+    "__type": "Infinity"
+  }
+}

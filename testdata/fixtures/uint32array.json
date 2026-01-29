@@ -1,0 +1,17 @@
+{
+  "description": "Uint32Array",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.588Z",
+  "byteLength": 13,
+  "hexDump": "ff0f5c060800000000ffffffff",
+  "value": {
+    "__type": "Uint32Array",
+    "data": [
+      0,
+      4294967295
+    ],
+    "byteOffset": 0,
+    "byteLength": 8
+  }
+}

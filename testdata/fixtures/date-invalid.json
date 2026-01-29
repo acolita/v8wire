@@ -1,0 +1,9 @@
+{
+  "description": "invalid Date (NaN)",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:14.955Z",
+  "byteLength": 11,
+  "hexDump": "ff0f44000000000000f87f",
+  "value": null
+}

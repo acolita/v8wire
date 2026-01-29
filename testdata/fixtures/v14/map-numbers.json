@@ -1,0 +1,21 @@
+{
+  "description": "Map with number keys",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.505Z",
+  "byteLength": 19,
+  "hexDump": "ff0f3b490222036f6e654904220374776f3a04",
+  "value": {
+    "__type": "Map",
+    "entries": [
+      [
+        1,
+        "one"
+      ],
+      [
+        2,
+        "two"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "description": "boxed Boolean true",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.517Z",
+  "byteLength": 3,
+  "hexDump": "ff0f79",
+  "value": {
+    "__type": "BooleanObject",
+    "value": true
+  }
+}

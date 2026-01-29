@@ -1,0 +1,13 @@
+{
+  "description": "nested object",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.498Z",
+  "byteLength": 30,
+  "hexDump": "ff0f6f22066e65737465646f2205696e6e6572220576616c75657b017b01",
+  "value": {
+    "nested": {
+      "inner": "value"
+    }
+  }
+}

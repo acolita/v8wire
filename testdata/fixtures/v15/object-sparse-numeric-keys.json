@@ -1,0 +1,12 @@
+{
+  "description": "object with sparse numeric keys",
+  "nodeVersion": "v22.22.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T13:47:25.772Z",
+  "byteLength": 33,
+  "hexDump": "ff0f6f49c801220768756e64726564499003220b74776f2068756e647265647b02",
+  "value": {
+    "100": "hundred",
+    "200": "two hundred"
+  }
+}

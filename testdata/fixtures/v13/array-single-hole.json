@@ -1,0 +1,13 @@
+{
+  "description": "array with single hole",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.172Z",
+  "byteLength": 7,
+  "hexDump": "ff0f6101400001",
+  "value": [
+    {
+      "__type": "undefined"
+    }
+  ]
+}

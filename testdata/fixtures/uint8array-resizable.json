@@ -1,0 +1,23 @@
+{
+  "description": "Uint8Array on ResizableArrayBuffer",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T14:03:15.134Z",
+  "byteLength": 13,
+  "hexDump": "ff0f5c01080000000000000000",
+  "value": {
+    "__type": "Uint8Array",
+    "data": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "byteOffset": 0,
+    "byteLength": 8
+  }
+}

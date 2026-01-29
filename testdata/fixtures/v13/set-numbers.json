@@ -1,0 +1,16 @@
+{
+  "description": "Set of numbers",
+  "nodeVersion": "v18.20.8",
+  "v8Version": "10.2.154.26-node.39",
+  "generatedAt": "2026-01-29T13:47:23.177Z",
+  "byteLength": 11,
+  "hexDump": "ff0f274902490449062c03",
+  "value": {
+    "__type": "Set",
+    "values": [
+      1,
+      2,
+      3
+    ]
+  }
+}

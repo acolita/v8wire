@@ -1,0 +1,9 @@
+{
+  "description": "Latin1 string with extended char (cafe with accent)",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.494Z",
+  "byteLength": 8,
+  "hexDump": "ff0f2204636166e9",
+  "value": "café"
+}

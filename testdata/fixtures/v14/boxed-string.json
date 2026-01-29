@@ -1,0 +1,12 @@
+{
+  "description": "boxed String",
+  "nodeVersion": "v20.20.0",
+  "v8Version": "11.3.244.8-node.33",
+  "generatedAt": "2026-01-29T13:47:24.518Z",
+  "byteLength": 12,
+  "hexDump": "ff0f73220777726170706564",
+  "value": {
+    "__type": "StringObject",
+    "value": "wrapped"
+  }
+}
