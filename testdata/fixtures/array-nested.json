@@ -2,7 +2,7 @@
   "description": "nested arrays",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.566Z",
+  "generatedAt": "2026-01-29T19:41:13.020Z",
   "byteLength": 25,
   "hexDump": "ff0f4102410249024904240002410249064908240002240002",
   "value": [

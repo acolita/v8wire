@@ -1,5 +1,5 @@
 ÿrm"simple errors"êError: simple error
-    at Object.<anonymous> (/home/raulc/git/v8wire/testgen/generate.js:331:8)
+    at Object.<anonymous> (/home/raulc/git/v8wire/testgen/generate.js:360:8)
     at Module._compile (node:internal/modules/cjs/loader:1706:14)
     at Object..js (node:internal/modules/cjs/loader:1839:10)
     at Module.load (node:internal/modules/cjs/loader:1441:32)

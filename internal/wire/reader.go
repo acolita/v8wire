@@ -184,6 +184,8 @@ func (r *Reader) AlignTo(boundary int) {
 
 // ReadOneByteString reads a Latin1 (one-byte) encoded string.
 // The length is provided as the number of bytes/characters.
+// Latin-1 bytes are converted to their Unicode equivalents (U+0000-U+00FF),
+// and the result is returned as a valid UTF-8 Go string.
 func (r *Reader) ReadOneByteString(length int) (string, error) {
 	if length < 0 {
 		return "", errors.New("wire: negative string length")
@@ -195,7 +197,8 @@ func (r *Reader) ReadOneByteString(length int) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	// Latin1 maps directly to Unicode code points 0-255
+	// Latin-1 maps directly to Unicode code points 0-255.
+	// Convert to proper UTF-8 encoding.
 	runes := make([]rune, length)
 	for i, b := range bytes {
 		runes[i] = rune(b)

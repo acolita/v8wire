@@ -2,7 +2,7 @@
   "description": "boolean false",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.492Z",
+  "generatedAt": "2026-01-29T19:41:13.008Z",
   "byteLength": 3,
   "hexDump": "ff0f46",
   "value": false

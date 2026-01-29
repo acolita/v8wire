@@ -334,6 +334,386 @@ func TestSerializeMatchesNodeJS(t *testing.T) {
 	}
 }
 
+func TestSerializeStringEdgeCases(t *testing.T) {
+	tests := []struct {
+		name  string
+		value string
+	}{
+		// ASCII
+		{"empty", ""},
+		{"single-char", "a"},
+		{"ascii-printable", "Hello, World!"},
+		{"ascii-with-null", "a\x00b"},
+		{"ascii-control-chars", "\x01\x02\x03\x1f"},
+
+		// Latin-1 (valid UTF-8 representation)
+		{"latin1-café", "café"},
+		{"latin1-äöü", "äöü"},
+		{"latin1-0x80", "\u0080"}, // First Latin-1 extended
+		{"latin1-0xFF", "\u00FF"}, // Last Latin-1 (ÿ)
+		{"latin1-all-extended", "\u0080\u0090\u00A0\u00B0\u00C0\u00D0\u00E0\u00F0\u00FF"},
+
+		// UTF-16 required
+		{"chinese", "你好"},
+		{"emoji-single", "🌍"},
+		{"emoji-multiple", "👨‍👩‍👧‍👦"},
+		{"mixed-ascii-emoji", "Hello 🌍 World"},
+		{"cyrillic", "Привет"},
+		{"japanese", "こんにちは"},
+		{"math-symbols", "∑∏∫∂"},
+		{"currency", "€£¥₹"},
+
+		// Edge cases at encoding boundaries
+		{"latin1-boundary", "\u00FF\u0100"}, // Last Latin-1 + first non-Latin-1
+		{"surrogate-pair", "𝄞"},             // Musical G clef (U+1D11E)
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// Serialize
+			data, err := Serialize(String(tt.value))
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			// Deserialize
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			// Verify
+			if got.Type() != TypeString {
+				t.Fatalf("expected String, got %s", got.Type())
+			}
+			if got.AsString() != tt.value {
+				t.Errorf("round-trip mismatch:\n  got:  %q (%x)\n  want: %q (%x)",
+					got.AsString(), []byte(got.AsString()),
+					tt.value, []byte(tt.value))
+			}
+		})
+	}
+}
+
+func TestSerializeStringLengthBoundaries(t *testing.T) {
+	// Test various string lengths to catch varint encoding issues
+	lengths := []int{0, 1, 127, 128, 255, 256, 1000, 16383, 16384}
+
+	for _, length := range lengths {
+		t.Run(string(rune('L'))+string(rune('='+rune(length%10))), func(t *testing.T) {
+			// Create string of given length
+			s := make([]byte, length)
+			for i := range s {
+				s[i] = 'a' + byte(i%26)
+			}
+			value := string(s)
+
+			data, err := Serialize(String(value))
+			if err != nil {
+				t.Fatalf("Serialize failed for length %d: %v", length, err)
+			}
+
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed for length %d: %v", length, err)
+			}
+
+			if got.AsString() != value {
+				t.Errorf("round-trip failed for length %d: got len=%d, want len=%d",
+					length, len(got.AsString()), len(value))
+			}
+		})
+	}
+}
+
+func TestSerializeMapRoundTrip(t *testing.T) {
+	tests := []struct {
+		name    string
+		entries []MapEntry
+	}{
+		{"empty", nil},
+		{"single-string-key", []MapEntry{
+			{Key: String("key"), Value: Int32(42)},
+		}},
+		{"multiple-entries", []MapEntry{
+			{Key: String("a"), Value: Int32(1)},
+			{Key: String("b"), Value: Int32(2)},
+			{Key: String("c"), Value: Int32(3)},
+		}},
+		{"non-string-keys", []MapEntry{
+			{Key: Int32(1), Value: String("one")},
+			{Key: Int32(2), Value: String("two")},
+		}},
+		{"mixed-key-types", []MapEntry{
+			{Key: String("str"), Value: Int32(1)},
+			{Key: Int32(42), Value: String("num")},
+			{Key: Bool(true), Value: String("bool")},
+		}},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			m := &JSMap{Entries: tt.entries}
+			v := Value{typ: TypeMap, data: m}
+
+			data, err := Serialize(v)
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			if got.Type() != TypeMap {
+				t.Fatalf("expected Map, got %s", got.Type())
+			}
+
+			gotMap := got.Interface().(*JSMap)
+			if len(gotMap.Entries) != len(tt.entries) {
+				t.Fatalf("expected %d entries, got %d", len(tt.entries), len(gotMap.Entries))
+			}
+		})
+	}
+}
+
+func TestSerializeSetRoundTrip(t *testing.T) {
+	tests := []struct {
+		name   string
+		values []Value
+	}{
+		{"empty", nil},
+		{"single", []Value{Int32(42)}},
+		{"numbers", []Value{Int32(1), Int32(2), Int32(3)}},
+		{"strings", []Value{String("a"), String("b"), String("c")}},
+		{"mixed", []Value{Int32(1), String("two"), Bool(true), Null()}},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &JSSet{Values: tt.values}
+			v := Value{typ: TypeSet, data: s}
+
+			data, err := Serialize(v)
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			if got.Type() != TypeSet {
+				t.Fatalf("expected Set, got %s", got.Type())
+			}
+
+			gotSet := got.Interface().(*JSSet)
+			if len(gotSet.Values) != len(tt.values) {
+				t.Fatalf("expected %d values, got %d", len(tt.values), len(gotSet.Values))
+			}
+		})
+	}
+}
+
+func TestSerializeTypedArrayRoundTrip(t *testing.T) {
+	tests := []struct {
+		name     string
+		typeName string
+		data     []byte
+	}{
+		{"uint8-empty", "Uint8Array", nil},
+		{"uint8-data", "Uint8Array", []byte{1, 2, 3, 4}},
+		{"int8", "Int8Array", []byte{0xff, 0x00, 0x7f}},
+		{"uint16", "Uint16Array", []byte{1, 0, 2, 0}},
+		{"int16", "Int16Array", []byte{0xff, 0xff, 0x00, 0x01}},
+		{"uint32", "Uint32Array", []byte{1, 0, 0, 0, 2, 0, 0, 0}},
+		{"int32", "Int32Array", []byte{0xff, 0xff, 0xff, 0xff}},
+		{"float32", "Float32Array", []byte{0, 0, 0x80, 0x3f}},             // 1.0
+		{"float64", "Float64Array", []byte{0, 0, 0, 0, 0, 0, 0xf0, 0x3f}}, // 1.0
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			view := &ArrayBufferView{
+				Buffer:     tt.data,
+				ByteOffset: 0,
+				ByteLength: len(tt.data),
+				Type:       tt.typeName,
+			}
+			v := Value{typ: TypeTypedArray, data: view}
+
+			data, err := Serialize(v)
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			if got.Type() != TypeTypedArray {
+				t.Fatalf("expected TypedArray, got %s", got.Type())
+			}
+
+			gotView := got.Interface().(*ArrayBufferView)
+			if gotView.Type != tt.typeName {
+				t.Errorf("type: got %s, want %s", gotView.Type, tt.typeName)
+			}
+			if !bytes.Equal(gotView.Buffer, tt.data) {
+				t.Errorf("data mismatch: got %v, want %v", gotView.Buffer, tt.data)
+			}
+		})
+	}
+}
+
+func TestSerializeErrorRoundTrip(t *testing.T) {
+	tests := []struct {
+		name    string
+		jsError *JSError
+	}{
+		{"simple", &JSError{Name: "Error", Message: "something went wrong"}},
+		{"type-error", &JSError{Name: "TypeError", Message: "undefined is not a function"}},
+		{"range-error", &JSError{Name: "RangeError", Message: "invalid array length"}},
+		{"reference-error", &JSError{Name: "ReferenceError", Message: "x is not defined"}},
+		{"syntax-error", &JSError{Name: "SyntaxError", Message: "unexpected token"}},
+		{"with-stack", &JSError{Name: "Error", Message: "oops", Stack: "Error: oops\n    at test.js:1:1"}},
+		{"empty-message", &JSError{Name: "Error", Message: ""}},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			v := Value{typ: TypeError, data: tt.jsError}
+
+			data, err := Serialize(v)
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			if got.Type() != TypeError {
+				t.Fatalf("expected Error, got %s", got.Type())
+			}
+
+			gotErr := got.Interface().(*JSError)
+			if gotErr.Name != tt.jsError.Name {
+				t.Errorf("name: got %s, want %s", gotErr.Name, tt.jsError.Name)
+			}
+			if gotErr.Message != tt.jsError.Message {
+				t.Errorf("message: got %q, want %q", gotErr.Message, tt.jsError.Message)
+			}
+		})
+	}
+}
+
+func TestSerializeBoxedPrimitiveRoundTrip(t *testing.T) {
+	tests := []struct {
+		name  string
+		boxed *BoxedPrimitive
+	}{
+		{"number-42", &BoxedPrimitive{PrimitiveType: TypeDouble, Value: Double(42)}},
+		{"number-pi", &BoxedPrimitive{PrimitiveType: TypeDouble, Value: Double(3.14159)}},
+		{"bool-true", &BoxedPrimitive{PrimitiveType: TypeBool, Value: Bool(true)}},
+		{"bool-false", &BoxedPrimitive{PrimitiveType: TypeBool, Value: Bool(false)}},
+		{"string", &BoxedPrimitive{PrimitiveType: TypeString, Value: String("wrapped")}},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			v := Value{typ: TypeBoxedPrimitive, data: tt.boxed}
+
+			data, err := Serialize(v)
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			got, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			if got.Type() != TypeBoxedPrimitive {
+				t.Fatalf("expected BoxedPrimitive, got %s", got.Type())
+			}
+		})
+	}
+}
+
+func TestSerializeNestedStructures(t *testing.T) {
+	// Deeply nested object
+	t.Run("deep-nesting", func(t *testing.T) {
+		// Create 50 levels of nesting
+		var v Value = Int32(42)
+		for i := 0; i < 50; i++ {
+			obj := map[string]Value{"nested": v}
+			v = Value{typ: TypeObject, data: obj}
+		}
+
+		data, err := Serialize(v)
+		if err != nil {
+			t.Fatalf("Serialize failed: %v", err)
+		}
+
+		got, err := Deserialize(data)
+		if err != nil {
+			t.Fatalf("Deserialize failed: %v", err)
+		}
+
+		// Walk down to the leaf
+		for i := 0; i < 50; i++ {
+			if got.Type() != TypeObject {
+				t.Fatalf("level %d: expected Object, got %s", i, got.Type())
+			}
+			obj := got.AsObject()
+			nested, ok := obj["nested"]
+			if !ok {
+				t.Fatalf("level %d: missing 'nested' key", i)
+			}
+			got = nested
+		}
+
+		if got.Type() != TypeInt32 || got.AsInt32() != 42 {
+			t.Errorf("leaf: expected Int32(42), got %v", got)
+		}
+	})
+
+	// Array of objects
+	t.Run("array-of-objects", func(t *testing.T) {
+		arr := make([]Value, 10)
+		for i := range arr {
+			obj := map[string]Value{
+				"index": Int32(int32(i)),
+				"name":  String("item"),
+			}
+			arr[i] = Value{typ: TypeObject, data: obj}
+		}
+		v := Value{typ: TypeArray, data: arr}
+
+		data, err := Serialize(v)
+		if err != nil {
+			t.Fatalf("Serialize failed: %v", err)
+		}
+
+		got, err := Deserialize(data)
+		if err != nil {
+			t.Fatalf("Deserialize failed: %v", err)
+		}
+
+		if got.Type() != TypeArray {
+			t.Fatalf("expected Array, got %s", got.Type())
+		}
+		if len(got.AsArray()) != 10 {
+			t.Fatalf("expected 10 elements, got %d", len(got.AsArray()))
+		}
+	})
+}
+
 // Helper functions
 
 func bytesToHex(b []byte) string {

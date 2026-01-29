@@ -1600,3 +1600,131 @@ func TestDeserializeTypedArraySubarray(t *testing.T) {
 		t.Errorf("expected byteLength 2, got %d", view.ByteLength)
 	}
 }
+
+// TestDeserializeLatin1EdgeCases tests Latin-1 string encoding edge cases
+// These tests verify correct handling of the Latin-1 character range (0x80-0xFF)
+func TestDeserializeLatin1EdgeCases(t *testing.T) {
+	tests := []struct {
+		fixture  string
+		expected string
+	}{
+		{"string-latin1-0x80", "\u0080"},
+		{"string-latin1-0xFF", "\u00FF"},
+		{"string-latin1-aumlaut", "\u00E4"},                                  // ä
+		{"string-latin1-oumlaut", "\u00F6"},                                  // ö
+		{"string-latin1-uumlaut", "\u00FC"},                                  // ü
+		{"string-latin1-eszett", "\u00DF"},                                   // ß
+		{"string-latin1-symbols", "\u00A0\u00A9\u00AE\u00B0"},                // NBSP © ® °
+		{"string-latin1-accented-A", "\u00C0\u00C1\u00C2\u00C3\u00C4\u00C5"}, // ÀÁÂÃÄÅ
+		{"string-latin1-accented-a", "\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5"}, // àáâãäå
+		{"string-latin1-words", "M\u00FCnchen Caf\u00E9 na\u00EFve"},         // München Café naïve
+		{"string-ascii-del", "\u007F"},
+		{"string-mixed-ascii-latin1", "ABC\u00C4\u00D6\u00DC123"},    // ABCÄÖÜ123
+		{"string-latin1-currency", "Price: \u00A31.99 (\u00A92024)"}, // Price: £1.99 (©2024)
+		{"string-latin1-multi-utf8-chars", "\u00C3\u00A4"},           // Ãä
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.fixture, func(t *testing.T) {
+			binData, _ := loadFixture(t, tt.fixture)
+			v, err := Deserialize(binData)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+			if v.Type() != TypeString {
+				t.Fatalf("expected TypeString, got %s", v.Type())
+			}
+			if got := v.AsString(); got != tt.expected {
+				t.Errorf("got %q (%x), expected %q (%x)",
+					got, []byte(got), tt.expected, []byte(tt.expected))
+			}
+		})
+	}
+}
+
+func TestDeserializeLatin1FullRange(t *testing.T) {
+	binData, _ := loadFixture(t, "string-latin1-full-range")
+	v, err := Deserialize(binData)
+	if err != nil {
+		t.Fatalf("Deserialize failed: %v", err)
+	}
+
+	if v.Type() != TypeString {
+		t.Fatalf("expected TypeString, got %s", v.Type())
+	}
+
+	s := v.AsString()
+	// Should contain 128 characters (0x80-0xFF)
+	runes := []rune(s)
+	if len(runes) != 128 {
+		t.Fatalf("expected 128 runes, got %d", len(runes))
+	}
+
+	// Verify each character
+	for i, r := range runes {
+		expected := rune(0x80 + i)
+		if r != expected {
+			t.Errorf("rune %d: expected U+%04X, got U+%04X", i, expected, r)
+		}
+	}
+}
+
+func TestDeserializeFirstNonLatin1(t *testing.T) {
+	binData, _ := loadFixture(t, "string-first-non-latin1")
+	v, err := Deserialize(binData)
+	if err != nil {
+		t.Fatalf("Deserialize failed: %v", err)
+	}
+
+	if v.Type() != TypeString {
+		t.Fatalf("expected TypeString, got %s", v.Type())
+	}
+
+	s := v.AsString()
+	// U+0100 is the first character outside Latin-1, should be encoded as UTF-16
+	if s != "\u0100" {
+		t.Errorf("expected U+0100 (Ā), got %q (%x)", s, []byte(s))
+	}
+}
+
+// TestLatin1StringRoundTrip tests that Latin-1 strings round-trip correctly
+func TestLatin1StringRoundTrip(t *testing.T) {
+	tests := []struct {
+		name  string
+		value string
+	}{
+		{"café", "café"},
+		{"äöü", "äöü"},
+		{"german", "Größe"},
+		{"french", "français"},
+		{"spanish", "señor"},
+		{"swedish", "smörgås"},
+		{"all-latin1-extended", "\u0080\u00A0\u00C0\u00E0\u00FF"},
+		{"mixed", "ASCII \u00A9 2024 \u00AE"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// Serialize
+			data, err := Serialize(String(tt.value))
+			if err != nil {
+				t.Fatalf("Serialize failed: %v", err)
+			}
+
+			// Deserialize
+			v, err := Deserialize(data)
+			if err != nil {
+				t.Fatalf("Deserialize failed: %v", err)
+			}
+
+			// Compare
+			if v.Type() != TypeString {
+				t.Fatalf("expected TypeString, got %s", v.Type())
+			}
+			if got := v.AsString(); got != tt.value {
+				t.Errorf("round-trip mismatch:\n  got:  %q (%x)\n  want: %q (%x)",
+					got, []byte(got), tt.value, []byte(tt.value))
+			}
+		})
+	}
+}

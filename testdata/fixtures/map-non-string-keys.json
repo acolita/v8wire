@@ -2,7 +2,7 @@
   "description": "Map with number, boolean, null keys",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:15.129Z",
+  "generatedAt": "2026-01-29T19:41:13.130Z",
   "byteLength": 26,
   "hexDump": "ff0f3b490222036f6e65542204626f6f6c3022046e756c6c3a06",
   "value": {

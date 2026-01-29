@@ -2,7 +2,7 @@
   "description": "unpaired high surrogate",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.938Z",
+  "generatedAt": "2026-01-29T19:41:13.085Z",
   "byteLength": 6,
   "hexDump": "ff0f630200d8",
   "value": "\ud800"

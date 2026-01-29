@@ -215,6 +215,35 @@ encode('\uD83D\uDE00\uD83D\uDE01\uD83D\uDE02', 'string-emoji-only', 'emoji-only 
 encode('a'.repeat(256), 'string-256', '256 character one-byte string');
 encode('\u4E2D'.repeat(256), 'string-256-twobyte', '256 character two-byte string');
 
+// Latin-1 boundary tests (0x80-0xFF range)
+console.log('\n--- Latin-1 Boundary Tests ---');
+encode('\u0080', 'string-latin1-0x80', 'Latin1 char at 0x80 boundary');
+encode('\u00FF', 'string-latin1-0xFF', 'Latin1 char at 0xFF (max Latin1)');
+encode('\u00E4', 'string-latin1-aumlaut', 'Latin1 ä (U+00E4)');
+encode('\u00F6', 'string-latin1-oumlaut', 'Latin1 ö (U+00F6)');
+encode('\u00FC', 'string-latin1-uumlaut', 'Latin1 ü (U+00FC)');
+encode('\u00DF', 'string-latin1-eszett', 'Latin1 ß (U+00DF)');
+encode('\u00A0\u00A9\u00AE\u00B0', 'string-latin1-symbols', 'Latin1 symbols: NBSP © ® °');
+encode('\u00C0\u00C1\u00C2\u00C3\u00C4\u00C5', 'string-latin1-accented-A', 'Latin1 accented A chars: ÀÁÂÃÄÅ');
+encode('\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5', 'string-latin1-accented-a', 'Latin1 accented a chars: àáâãäå');
+encode('M\u00FCnchen Caf\u00E9 na\u00EFve', 'string-latin1-words', 'Latin1 words: München Café naïve');
+encode('\u007F', 'string-ascii-del', 'ASCII DEL character (0x7F)');
+encode('\u0100', 'string-first-non-latin1', 'First non-Latin1 char (U+0100)');
+
+// Latin-1 range full coverage
+let latin1Full = '';
+for (let i = 0x80; i <= 0xFF; i++) {
+  latin1Full += String.fromCharCode(i);
+}
+encode(latin1Full, 'string-latin1-full-range', 'All Latin1 extended chars (0x80-0xFF)');
+
+// Mixed ASCII and Latin-1
+encode('ABC\u00C4\u00D6\u00DC123', 'string-mixed-ascii-latin1', 'Mixed ASCII and Latin1 extended');
+encode('Price: \u00A31.99 (\u00A92024)', 'string-latin1-currency', 'Latin1 with currency symbols: £ ©');
+
+// Multi-byte UTF-8 that fits in Latin-1
+encode('\u00C3\u00A4', 'string-latin1-multi-utf8-chars', 'Multiple Latin1 chars that have 2-byte UTF-8');
+
 // ============================================================================
 // Phase 1: Date
 // ============================================================================

@@ -1,6 +1,6 @@
 ÿrm"
 with causes"éError: with cause
-    at Object.<anonymous> (/home/raulc/git/v8wire/testgen/generate.js:508:10)
+    at Object.<anonymous> (/home/raulc/git/v8wire/testgen/generate.js:537:10)
     at Module._compile (node:internal/modules/cjs/loader:1706:14)
     at Object..js (node:internal/modules/cjs/loader:1839:10)
     at Module.load (node:internal/modules/cjs/loader:1441:32)

@@ -2,7 +2,7 @@
   "description": "one-byte string (ASCII/Latin1)",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.535Z",
+  "generatedAt": "2026-01-29T19:41:13.013Z",
   "byteLength": 9,
   "hexDump": "ff0f220568656c6c6f",
   "value": "hello"

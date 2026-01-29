@@ -231,7 +231,11 @@ func (s *Serializer) writeString(str string) error {
 		s.writer.WriteTwoByteString(str)
 	} else {
 		s.writer.WriteByte(tagOneByteString)
-		s.writer.WriteVarint32(uint32(len(str)))
+		// For one-byte strings, the length is the number of Latin-1 characters.
+		// For valid UTF-8, this is the rune count (each rune <= 255 becomes one byte).
+		// For invalid UTF-8, this is the byte count (raw bytes are written).
+		length := wire.OneByteStringLength(str)
+		s.writer.WriteVarint32(uint32(length))
 		s.writer.WriteOneByteString(str)
 	}
 	return nil

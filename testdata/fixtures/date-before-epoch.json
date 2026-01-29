@@ -2,7 +2,7 @@
   "description": "date before epoch (Dec 31, 1969)",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.552Z",
+  "generatedAt": "2026-01-29T19:41:13.017Z",
   "byteLength": 11,
   "hexDump": "ff0f4400000000709994c1",
   "value": "1969-12-31T00:00:00.000Z"

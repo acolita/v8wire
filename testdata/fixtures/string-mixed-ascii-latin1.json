@@ -1,0 +1,9 @@
+{
+  "description": "Mixed ASCII and Latin1 extended",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T19:41:13.017Z",
+  "byteLength": 13,
+  "hexDump": "ff0f2209414243c4d6dc313233",
+  "value": "ABCÄÖÜ123"
+}

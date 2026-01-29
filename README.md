@@ -10,6 +10,44 @@ A Go library for serializing and deserializing V8's Structured Clone format, com
 - **Round-trip safe**: Serialize → Deserialize → Serialize produces identical bytes
 - **No dependencies**: Pure Go implementation
 
+## Use Cases
+
+### Go ↔ Node.js Communication
+Exchange complex data between Go services and Node.js processes without JSON overhead:
+```go
+// Go service receives data serialized by Node.js
+data := receiveFromNodeProcess()
+val, _ := v8serialize.Deserialize(data)
+```
+
+### Redis Session/Cache Sharing
+Node.js apps often store `v8.serialize()` data in Redis. Go services can read/write the same cache:
+```go
+// Read session data written by Node.js
+data, _ := redis.Get("session:user123")
+session, _ := v8serialize.Deserialize(data)
+```
+
+### Message Queue Interop
+Process messages from Node.js workers in Go consumers (or vice versa) via RabbitMQ, Kafka, NATS, etc.
+
+### File Format Parsing
+Read files or databases that store V8-serialized data (e.g., Electron app data, LevelDB stores used by Node apps).
+
+### Migration/ETL Pipelines
+Migrate data from Node.js systems to Go systems while preserving JavaScript semantics (BigInt, Date, typed arrays, circular refs).
+
+### Why Not Just Use JSON?
+
+| Feature | JSON | V8 Structured Clone |
+|---------|------|---------------------|
+| Binary data | Base64 (33% overhead) | Native `ArrayBuffer` |
+| BigInt | Not supported | Native |
+| Circular refs | Error | Handled |
+| Date | String (lossy) | Preserved |
+| `undefined` | Not supported | Preserved |
+| Typed arrays | Array of numbers | Native views |
+
 ## Installation
 
 ```bash

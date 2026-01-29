@@ -2,7 +2,7 @@
   "description": "unpaired high surrogate with surrounding chars",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.953Z",
+  "generatedAt": "2026-01-29T19:41:13.087Z",
   "byteLength": 18,
   "hexDump": "ff0f630e66006f006f0000d8620061007200",
   "value": "foo\ud800bar"

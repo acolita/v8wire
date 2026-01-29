@@ -1,0 +1,9 @@
+{
+  "description": "Latin1 accented a chars: àáâãäå",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T19:41:13.016Z",
+  "byteLength": 10,
+  "hexDump": "ff0f2206e0e1e2e3e4e5",
+  "value": "àáâãäå"
+}

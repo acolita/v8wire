@@ -1,0 +1,9 @@
+{
+  "description": "Latin1 with currency symbols: £ ©",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T19:41:13.017Z",
+  "byteLength": 24,
+  "hexDump": "ff0f221450726963653a20a3312e39392028a93230323429",
+  "value": "Price: £1.99 (©2024)"
+}

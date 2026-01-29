@@ -1,0 +1,9 @@
+{
+  "description": "Latin1 words: München Café naïve",
+  "nodeVersion": "v22.21.0",
+  "v8Version": "12.4.254.21-node.33",
+  "generatedAt": "2026-01-29T19:41:13.016Z",
+  "byteLength": 22,
+  "hexDump": "ff0f22124dfc6e6368656e20436166e9206e61ef7665",
+  "value": "München Café naïve"
+}

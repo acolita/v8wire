@@ -2,7 +2,7 @@
   "description": "BigUint64Array",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.920Z",
+  "generatedAt": "2026-01-29T19:41:13.083Z",
   "byteLength": 29,
   "hexDump": "ff0f5c0c1800000000000000000100000000000000ffffffffffffffff",
   "value": {

@@ -2,7 +2,7 @@
   "description": "array with custom properties",
   "nodeVersion": "v22.21.0",
   "v8Version": "12.4.254.21-node.33",
-  "generatedAt": "2026-01-29T14:03:14.679Z",
+  "generatedAt": "2026-01-29T19:41:13.040Z",
   "byteLength": 54,
   "hexDump": "ff0f4103490249044906220a637573746f6d50726f70220c637573746f6d2076616c7565220b616e6f7468657250726f704954240203",
   "value": [

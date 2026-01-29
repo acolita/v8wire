@@ -3,6 +3,7 @@ package wire
 import (
 	"encoding/binary"
 	"math"
+	"unicode/utf8"
 )
 
 // Writer writes V8 serialized data to a byte buffer.
@@ -84,10 +85,18 @@ func (w *Writer) WriteDouble(f float64) {
 	w.buf = append(w.buf, buf[:]...)
 }
 
-// WriteOneByteString writes a Latin1 string (each rune must be <= 255).
+// WriteOneByteString writes a Latin1 string.
+// For valid UTF-8 strings, each rune is written as a byte (must be <= 255).
+// For invalid UTF-8 strings, raw bytes are written directly as Latin-1.
 func (w *Writer) WriteOneByteString(s string) {
-	for _, r := range s {
-		w.buf = append(w.buf, byte(r))
+	if !utf8.ValidString(s) {
+		// Invalid UTF-8: write raw bytes directly
+		w.buf = append(w.buf, s...)
+	} else {
+		// Valid UTF-8: decode runes and write as bytes
+		for _, r := range s {
+			w.buf = append(w.buf, byte(r))
+		}
 	}
 }
 
@@ -132,8 +141,26 @@ func UTF16Length(s string) int {
 	return count
 }
 
-// NeedsUTF16 returns true if the string contains characters outside Latin1.
+// OneByteStringLength returns the length of a one-byte (Latin-1) string.
+// For valid UTF-8 strings, this is the rune count (each rune becomes one byte).
+// For invalid UTF-8 strings, this is the byte count (raw bytes are written).
+func OneByteStringLength(s string) int {
+	if !utf8.ValidString(s) {
+		return len(s)
+	}
+	return utf8.RuneCountInString(s)
+}
+
+// NeedsUTF16 returns true if the string requires UTF-16 encoding.
+// A string can use Latin-1 (one-byte) encoding if:
+//   - It is not valid UTF-8 (treated as raw Latin-1 bytes, all 0-255)
+//   - OR all decoded runes are in the Latin-1 range (0-255)
 func NeedsUTF16(s string) bool {
+	if !utf8.ValidString(s) {
+		// Invalid UTF-8: treat each byte as Latin-1, which always fits in 0-255
+		return false
+	}
+	// Valid UTF-8: check if all runes fit in Latin-1
 	for _, r := range s {
 		if r > 255 {
 			return true
